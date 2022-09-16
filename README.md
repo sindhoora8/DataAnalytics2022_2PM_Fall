@@ -1,1 +1,1 @@
-# DataAnalytics2022_2PM_Sindhoora_Mandadi_2PM_Fall
+# DataAnalyticsFall2022_Sindhoora_Mandadi
