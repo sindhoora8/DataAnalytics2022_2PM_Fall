@@ -24,20 +24,16 @@ for(i in 1:2345) {
 if(duplicates[i]==FALSE) 
   dupadd<-bronxadd[bronxadd$duplicates,1]
 }#what are we doing with dupadd?
-dupadd
 nsample=450
-bronxadd
-dim(bronxadd)
-help("sample.int")
-sample.int(2251,450)
-sample.int(1e10, 12)
-addsample<-bronxadd[sample.int(dim(bronxadd),size=nsample),]#I use nval here 
+sample.int(dim(bronxadd)[1])
+addsample<-bronxadd[sample.int(dim(bronxadd)[1]),nsample]#I use nval here 
 # may need to install this package
 library(ggmap)
 addrlist<-paste(addsample$ADDRESSONLY, "NY", addsample$ZIP.CODE, "US", sep=" ") 
 querylist<-geocode(addrlist) #This is cool. Take a break.
 
-matched<-(querylist$lat!=0 &&querylist$lon!=0) addsample<-cbind(addsample,querylist$lat,querylist$lon) 
+matched<-(querylist$lat!=0 &&querylist$lon!=0) 
+addsample<-cbind(addsample,querylist$lat,querylist$lon) 
 names(addsample)<-c("ADDRESSONLY","ZIPCODE","Latitude","Longitude")# correct the column na adduse<-merge(bronx1,addsample)
 
 adduse<-adduse[!is.na(adduse$Latitude),]
